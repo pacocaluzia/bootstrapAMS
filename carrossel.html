@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			margin: 0;
+			min-height: 100%;
+		}
+
+		body {
+			min-height: 100vh;
+			color: whitesmoke;
+			font-family: Arial, sans-serif;
+			background: #080808;
+			overflow-x: hidden;
+		}
+
+		.fundo {
+			position: fixed;
+			inset: 0;
+			z-index: -2;
+			background: linear-gradient(135deg, #180000, #8b0000, #001b3d);
+			transition: opacity 1.5s ease;
+		}
+
+		.fundo-anterior {
+			position: fixed;
+			inset: 0;
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 1.5s ease;
+		}
+
+		.menu {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			padding: 15px 35px;
+			background: rgba(0, 0, 0, 0.88);
+			backdrop-filter: blur(10px);
+			border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+			z-index: 1000;
+		}
+
+		.menu-conteudo {
+			max-width: 1200px;
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.logo {
+			color: white;
+			text-decoration: none;
+			font-size: 20px;
+			font-weight: bold;
+			letter-spacing: 2px;
+		}
+
+		.logo span {
+			color: #e3262e;
+		}
+
+		.links {
+			display: flex;
+			gap: 25px;
+		}
+
+		.links a {
+			color: #ddd;
+			text-decoration: none;
+			font-weight: bold;
+			transition: 0.3s;
+		}
+
+		.links a:hover {
+			color: white;
+			text-shadow: 0 0 10px white;
+		}
+
+		.principal {
+			width: 100%;
+			min-height: 100vh;
+			padding: 100px 20px 40px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 25px;
+		}
+
+		.titulo {
+			background: rgba(0, 0, 0, 0.88);
+			padding: 18px 45px;
+			border-radius: 12px;
+			text-align: center;
+			border: 1px solid rgba(255, 255, 255, 0.15);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+		}
+
+		.titulo h1 {
+			margin: 0;
+			font-size: 34px;
+			font-weight: 800;
+			letter-spacing: 3px;
+			transition: color 1s ease, text-shadow 1s ease;
+		}
+
+		.subtitulo {
+			margin: 7px 0 0;
+			font-size: 13px;
+			color: #aaa;
+			letter-spacing: 2px;
+		}
+
+		.carousel-area {
+			width: min(850px, 100%);
+		}
+
+		.carousel {
+			height: 540px;
+			border-radius: 18px;
+			overflow: hidden;
+			background: rgba(0, 0, 0, 0.25);
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+		}
+
+		.carousel-inner,
+		.carousel-item {
+			height: 540px;
+		}
+
+		.carousel-item {
+			position: relative;
+		}
+
+		.carousel-item::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(
+				to bottom,
+				transparent 45%,
+				rgba(0, 0, 0, 0.45) 100%
+			);
+			pointer-events: none;
+		}
+
+		.carousel-item img {
+			width: 100%;
+			height: 540px;
+			object-fit: contain;
+			transition: transform 4s ease;
+		}
+
+		.carousel-item.active img {
+			transform: scale(1.04);
+		}
+
+		.carousel-fade .carousel-item {
+			transition: opacity 1.4s ease-in-out;
+		}
+
+		.carousel-caption {
+			z-index: 5;
+			bottom: 35px;
+		}
+
+		.caixa-heroi {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.caixa {
+			width: 310px;
+			padding: 18px !important;
+			text-align: center;
+			background: rgba(0, 0, 0, 0.88);
+			color: whitesmoke;
+			border-radius: 12px;
+			border: 1px solid rgba(255, 255, 255, 0.25) !important;
+			backdrop-filter: blur(8px);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+		}
+
+		.caixa h3 {
+			margin: 0 0 5px;
+			font-size: 25px;
+			font-weight: bold;
+		}
+
+		.caixa p {
+			margin: 0 0 15px;
+			color: #bbb;
+		}
+
+		.btn-heroi {
+			border: 1px solid rgba(255, 255, 255, 0.4);
+			background: rgba(255, 255, 255, 0.08);
+			color: white;
+			padding: 7px 20px;
+			border-radius: 20px;
+			font-size: 13px;
+			font-weight: bold;
+			transition: 0.3s;
+		}
+
+		.btn-heroi:hover {
+			background: white;
+			color: black;
+			transform: translateY(-2px);
+		}
+
+		.carousel-indicators {
+			bottom: 5px;
+			z-index: 10;
+			gap: 8px;
+		}
+
+		.carousel-indicators button {
+			width: auto;
+			height: auto;
+			text-indent: 0;
+			border: 0;
+			background: rgba(0, 0, 0, 0.75);
+			color: #aaa;
+			padding: 6px 14px;
+			border-radius: 20px;
+			opacity: 1;
+			font-size: 11px;
+			font-weight: bold;
+			transition: 0.3s;
+		}
+
+		.carousel-indicators button.active {
+			color: white;
+			background: rgba(0, 0, 0, 0.95);
+			transform: scale(1.05);
+		}
+
+		.carousel-control-prev,
+		.carousel-control-next {
+			width: 10%;
+			z-index: 8;
+		}
+
+		.modal-content {
+			background: #101010;
+			color: white;
+			border: 1px solid #333;
+			border-radius: 15px;
+		}
+
+		.modal-header {
+			border-bottom: 1px solid #333;
+		}
+
+		.modal-footer {
+			border-top: 1px solid #333;
+		}
+
+		.modal-body {
+			color: #ccc;
+			line-height: 1.7;
+		}
+
+		.btn-close {
+			filter: invert(1);
+		}
+
+		@media (max-width: 768px) {
+			.menu {
+				padding: 12px 18px;
+			}
+
+			.logo {
+				font-size: 16px;
+			}
+
+			.links {
+				gap: 12px;
+				font-size: 13px;
+			}
+
+			.principal {
+				padding-top: 90px;
+			}
+
+			.titulo {
+				padding: 15px 20px;
+			}
+
+			.titulo h1 {
+				font-size: 23px;
+				letter-spacing: 1px;
+			}
+
+			.carousel,
+			.carousel-inner,
+			.carousel-item,
+			.carousel-item img {
+				height: 460px;
+			}
+
+			.carousel-caption {
+				bottom: 45px;
+			}
+
+			.caixa {
+				width: 250px;
+			}
+
+			.carousel-indicators button {
+				padding: 5px 9px;
+				font-size: 9px;
+			}
+		}
+
+		@media (max-width: 500px) {
+			.links {
+				gap: 10px;
+			}
+
+			.carousel,
+			.carousel-inner,
+			.carousel-item,
+			.carousel-item img {
+				height: 400px;
+			}
+
+			.caixa {
+				width: 220px;
+				padding: 12px !important;
+			}
+
+			.caixa h3 {
+				font-size: 19px;
+			}
+
+			.caixa p {
+				font-size: 13px;
+			}
+
+			.carousel-indicators button {
+				padding: 4px 7px;
+				font-size: 8px;
+			}
+		}
+	</style>
+
+	<title>Carrossel de Heróis</title>
+</head>
+
+<body>
+
+	<div class="fundo" id="fundo"></div>
+	<div class="fundo-anterior" id="fundoAnterior"></div>
+
+	<nav class="menu">
+		<div class="menu-conteudo">
+			<a href="index.html" class="logo"><span>HERÓIS</span></a>
+
+			<div class="links">
+				<a href="index.html">Início</a>
+				<a href="herois.html">Heróis</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="principal">
+
+		<div class="titulo" id="titulo">
+			<h1>CARROSSEL DE HERÓIS</h1>
+			<p class="subtitulo">PERSONAGENS DA MARVEL</p>
+		</div>
+
+		<div class="carousel-area">
+
+			<div id="controle" class="carousel slide carousel-fade">
+
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#controle" data-bs-slide-to="0" class="active" aria-current="true">HOMEM-ARANHA</button>
+					<button type="button" data-bs-target="#controle" data-bs-slide-to="1">HOMEM DE FERRO</button>
+					<button type="button" data-bs-target="#controle" data-bs-slide-to="2">THOR</button>
+				</div>
+
+				<div class="carousel-inner">
+
+					<div class="carousel-item active" data-bg="spiderman">
+
+						<img
+							src="https://upload.wikimedia.org/wikipedia/pt/2/21/Web_of_Spider-Man_Vol_1_129-1.png?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+							alt="Homem-Aranha"
+							class="d-block w-100"
+						>
+
+						<div class="carousel-caption d-none d-md-block">
+							<div class="caixa-heroi">
+								<div class="caixa">
+									<h3>Homem-Aranha</h3>			
+									<button class="btn-heroi" data-bs-toggle="modal" data-bs-target="#modalSpider">SAIBA MAIS</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="carousel-item" data-bg="ironman">
+
+						<img
+							src="https://upload.wikimedia.org/wikipedia/pt/5/59/Iron_Man_%282020%29.png?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+							alt="Homem de Ferro"
+							class="d-block w-100"
+						>
+
+						<div class="carousel-caption d-none d-md-block">
+							<div class="caixa-heroi">
+								<div class="caixa">
+									<h3>Homem de Ferro</h3>
+									<button class="btn-heroi" data-bs-toggle="modal" data-bs-target="#modalIron">SAIBA MAIS</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="carousel-item" data-bg="thor">
+
+						<img
+							src="https://upload.wikimedia.org/wikipedia/pt/d/d5/Thor_%28Thor_vol._6_n%C2%BA31%3B_2023%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+							alt="Thor"
+							class="d-block w-100"
+						>
+
+						<div class="carousel-caption d-none d-md-block">
+							<div class="caixa-heroi">
+								<div class="caixa">
+									<h3>Thor</h3>
+									<button class="btn-heroi" data-bs-toggle="modal" data-bs-target="#modalThor">SAIBA MAIS</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#controle" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</button>
+
+				<button class="carousel-control-next" type="button" data-bs-target="#controle" data-bs-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal fade" id="modalSpider" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Homem-Aranha</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					Peter Parker é um dos personagens mais conhecidos da Marvel. Após ser picado por uma aranha radioativa, desenvolveu habilidades especiais e passou a usar seus poderes para combater o crime.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalIron" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Homem de Ferro</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					Tony Stark é um inventor e empresário que desenvolveu uma avançada armadura tecnológica. Utilizando sua inteligência e seus recursos, tornou-se um dos principais heróis da Marvel.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalThor" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Thor</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					Thor é o deus do trovão e um dos principais personagens da Marvel. Filho de Odin e príncipe de Asgard, utiliza seus poderes e seu lendário martelo em suas batalhas.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+		const carousel = document.querySelector('#controle');
+		const titulo = document.querySelector('#titulo h1');
+		const fundo = document.querySelector('#fundo');
+
+		const fundos = {
+			spiderman: 'linear-gradient(135deg, #170000, #8b0000, #001b3d)',
+			ironman: 'linear-gradient(135deg, #180000, #8b0000, #8a6500)',
+			thor: 'linear-gradient(135deg, #050b18, #164b78, #777777)'
+		};
+
+		const cores = {
+			spiderman: '#e3262e',
+			ironman: '#ffd700',
+			thor: '#4da6ff'
+		};
+
+		function mudarTema() {
+			const slideAtual = document.querySelector('.carousel-item.active');
+			const heroi = slideAtual.getAttribute('data-bg');
+
+			fundo.style.background = fundos[heroi];
+			titulo.style.color = cores[heroi];
+			titulo.style.textShadow = `0 0 20px ${cores[heroi]}`;
+		}
+
+		carousel.addEventListener('slid.bs.carousel', mudarTema);
+
+		mudarTema();
+
+		new bootstrap.Carousel(carousel, {
+			interval: 5000,
+			ride: 'carousel',
+			pause: 'hover',
+			wrap: true
+		});
+	</script>
+
+</body>
+</html>
+

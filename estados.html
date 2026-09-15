@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <title>Estados Brasileiros</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image:
+                url("https://img.magnific.com/fotos-premium/uma-pintura-colorida-de-uma-cor-de-agua-com-um-fundo-amarelo-e-verde_916191-332459.jpg?semt=ais_hybrid&w=740&q=80");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .topo {
+            background: #009c3b;
+            color: white;
+            padding: 28px 20px;
+            border-bottom: 5px solid #f2c500;
+        }
+
+        .topo h1 {
+            margin: 0;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .topo p {
+            margin: 7px 0 0;
+            font-size: 16px;
+        }
+
+        .voltar-inicio {
+            display: inline-block;
+
+            margin-top: 18px;
+            padding: 9px 18px;
+
+            background-color: white;
+            color: #009c3b;
+
+            border: 2px solid white;
+            border-radius: 6px;
+
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.2s ease;
+        }
+
+        .voltar-inicio:hover {
+            background-color: #f2c500;
+            border-color: #f2c500;
+            color: #222;
+
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        .principal {
+            padding-top: 38px;
+            padding-bottom: 55px;
+        }
+
+        .selecao {
+            position: relative;
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.96);
+            border: 2px solid #009c3b;
+            border-radius: 10px;
+
+            padding: 30px;
+            margin-bottom: 38px;
+
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .selecao::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            background: #f2c500;
+
+            transform: rotate(45deg);
+
+            top: -150px;
+            left: 50%;
+            margin-left: -115px;
+
+            opacity: 0.14;
+        }
+
+        .selecao h2 {
+            position: relative;
+
+            font-size: 23px;
+            font-weight: 500;
+            color: #333;
+
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .botoes-brasil {
+            position: relative;
+
+            max-width: 1080px;
+            margin: auto;
+
+            padding: 18px 15px;
+        }
+
+        .faixa-verde {
+            position: absolute;
+
+            top: 50%;
+            left: 3%;
+            right: 3%;
+
+            height: 190px;
+
+            background: #009c3b;
+
+            transform: translateY(-50%) rotate(-4deg);
+
+            clip-path: polygon(
+                50% 0%,
+                100% 50%,
+                50% 100%,
+                0% 50%
+            );
+
+            z-index: 0;
+
+            opacity: 0.12;
+        }
+
+        .faixa-amarela {
+            position: absolute;
+
+            top: 50%;
+            left: 16%;
+            right: 16%;
+
+            height: 125px;
+
+            background: #f2c500;
+
+            transform: translateY(-50%) rotate(-4deg);
+
+            clip-path: polygon(
+                50% 0%,
+                100% 50%,
+                50% 100%,
+                0% 50%
+            );
+
+            z-index: 0;
+
+            opacity: 0.25;
+        }
+
+        .circulo-azul {
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #002776;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            z-index: 0;
+
+            opacity: 0.16;
+        }
+
+        #botoes {
+            position: relative;
+            z-index: 2;
+
+            display: grid;
+
+            grid-template-columns: repeat(7, 1fr);
+
+            gap: 14px;
+        }
+
+        .botao-estado {
+            width: 100%;
+            min-height: 52px;
+
+            border: 2px solid transparent;
+            border-radius: 7px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 8px 6px;
+
+            transition: 0.2s ease;
+        }
+
+        .botao-estado:hover {
+            transform: translateY(-3px);
+
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.16);
+        }
+
+        .verde {
+            background-color: #009c3b;
+            color: white;
+        }
+
+        .verde:hover {
+            background-color: #007f30;
+            color: white;
+        }
+
+        .amarelo {
+            background-color: #f2c500;
+            color: #222;
+        }
+
+        .amarelo:hover {
+            background-color: #d8ae00;
+            color: #222;
+        }
+
+        .azul {
+            background-color: #002776;
+            color: white;
+        }
+
+        .azul:hover {
+            background-color: #001d5c;
+            color: white;
+        }
+
+        .caixa-estado {
+            margin-bottom: 24px;
+        }
+
+        .card-estado {
+            background: white;
+
+            border: 1px solid #d7d7d7;
+            border-left: 6px solid #009c3b;
+
+            border-radius: 8px;
+
+            overflow: hidden;
+
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+        }
+
+        .cabecalho-estado {
+            background: #009c3b;
+            color: white;
+
+            padding: 17px 22px;
+        }
+
+        .cabecalho-estado h3 {
+            margin: 0;
+
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .conteudo-estado {
+            padding: 25px;
+        }
+
+        .informacao {
+            font-size: 16px;
+            margin-bottom: 11px;
+        }
+
+        .informacao strong {
+            color: #002776;
+        }
+
+        .foto-container {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .foto-estado {
+            width: 100%;
+            max-width: 500px;
+            height: 270px;
+
+            object-fit: contain;
+
+            background-color: #f7f7f7;
+
+            border: 1px solid #ddd;
+            border-radius: 6px;
+
+            padding: 10px;
+        }
+
+        .rodape {
+            background: #002776;
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+
+            border-top: 5px solid #009c3b;
+        }
+
+        .rodape p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1000px) {
+
+            #botoes {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            .faixa-verde,
+            .faixa-amarela,
+            .circulo-azul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .topo h1 {
+                font-size: 27px;
+            }
+
+            .selecao {
+                padding: 22px 12px;
+            }
+
+            #botoes {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .botao-estado {
+                min-height: 47px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            #botoes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .conteudo-estado {
+                padding: 20px;
+            }
+
+            .foto-estado {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="container">
+
+            <h1>Estados Brasileiros</h1>
+
+            <p>
+                Conheça os estados, capitais e regiões do Brasil.
+            </p>
+
+            <a href="index.html" class="voltar-inicio">
+                ← Voltar ao início
+            </a>
+
+        </div>
+    </header>
+
+    <main class="container principal">
+
+        <section class="selecao">
+
+            <h2>Escolha um estado</h2>
+
+            <div class="botoes-brasil">
+
+                <div class="faixa-verde"></div>
+                <div class="faixa-amarela"></div>
+                <div class="circulo-azul"></div>
+
+                <div id="botoes"></div>
+
+            </div>
+
+        </section>
+
+        <section id="estados"></section>
+
+    </main>
+
+    <footer class="rodape">
+
+        <p>Estados Brasileiros</p>
+
+    </footer>
+
+    <script>
+
+        const estados = [
+            {
+                nome: "Acre",
+                sigla: "AC",
+                capital: "Rio Branco",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Bandeira_do_Acre.svg/1920px-Bandeira_do_Acre.svg.png"
+            },
+            {
+                nome: "Alagoas",
+                sigla: "AL",
+                capital: "Maceió",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Bandeira_de_Alagoas.svg/1920px-Bandeira_de_Alagoas.svg.png"
+            },
+            {
+                nome: "Amapá",
+                sigla: "AP",
+                capital: "Macapá",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Bandeira_do_Amap%C3%A1.svg/1920px-Bandeira_do_Amap%C3%A1.svg.png"
+            },
+            {
+                nome: "Amazonas",
+                sigla: "AM",
+                capital: "Manaus",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Bandeira_do_Amazonas.svg/1920px-Bandeira_do_Amazonas.svg.png"
+            },
+            {
+                nome: "Bahia",
+                sigla: "BA",
+                capital: "Salvador",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/28/Bandeira_da_Bahia.svg/960px-Bandeira_da_Bahia.svg.png"
+            },
+            {
+                nome: "Ceará",
+                sigla: "CE",
+                capital: "Fortaleza",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Bandeira_do_Cear%C3%A1.svg/960px-Bandeira_do_Cear%C3%A1.svg.png"
+            },
+            {
+                nome: "Distrito Federal",
+                sigla: "DF",
+                capital: "Brasília",
+                regiao: "Centro-Oeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Bandeira_do_Distrito_Federal_%28Brasil%29.svg/960px-Bandeira_do_Distrito_Federal_%28Brasil%29.svg.png"
+            },
+            {
+                nome: "Espírito Santo",
+                sigla: "ES",
+                capital: "Vitória",
+                regiao: "Sudeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Bandeira_do_Esp%C3%ADrito_Santo.svg/960px-Bandeira_do_Esp%C3%ADrito_Santo.svg.png"
+            },
+            {
+                nome: "Goiás",
+                sigla: "GO",
+                capital: "Goiânia",
+                regiao: "Centro-Oeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Flag_of_Goi%C3%A1s.svg/960px-Flag_of_Goi%C3%A1s.svg.png"
+            },
+            {
+                nome: "Maranhão",
+                sigla: "MA",
+                capital: "São Luís",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Bandeira_do_Maranh%C3%A3o.svg/1920px-Bandeira_do_Maranh%C3%A3o.svg.png"
+            },
+            {
+                nome: "Mato Grosso",
+                sigla: "MT",
+                capital: "Cuiabá",
+                regiao: "Centro-Oeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Bandeira_de_Mato_Grosso.svg/1920px-Bandeira_de_Mato_Grosso.svg.png"
+            },
+            {
+                nome: "Mato Grosso do Sul",
+                sigla: "MS",
+                capital: "Campo Grande",
+                regiao: "Centro-Oeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Bandeira_de_Mato_Grosso_do_Sul.svg/1920px-Bandeira_de_Mato_Grosso_do_Sul.svg.png"
+            },
+            {
+                nome: "Minas Gerais",
+                sigla: "MG",
+                capital: "Belo Horizonte",
+                regiao: "Sudeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Bandeira_de_Minas_Gerais.svg/1920px-Bandeira_de_Minas_Gerais.svg.png"
+            },
+            {
+                nome: "Pará",
+                sigla: "PA",
+                capital: "Belém",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Bandeira_do_Par%C3%A1.svg/1920px-Bandeira_do_Par%C3%A1.svg.png"
+            },
+            {
+                nome: "Paraíba",
+                sigla: "PB",
+                capital: "João Pessoa",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Bandeira_da_Para%C3%ADba.svg/1920px-Bandeira_da_Para%C3%ADba.svg.png"
+            },
+            {
+                nome: "Paraná",
+                sigla: "PR",
+                capital: "Curitiba",
+                regiao: "Sul",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Bandeira_do_Paran%C3%A1.svg/1920px-Bandeira_do_Paran%C3%A1.svg.png"
+            },
+            {
+                nome: "Pernambuco",
+                sigla: "PE",
+                capital: "Recife",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Bandeira_de_Pernambuco.svg/1920px-Bandeira_de_Pernambuco.svg.png"
+            },
+            {
+                nome: "Piauí",
+                sigla: "PI",
+                capital: "Teresina",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Bandeira_do_Piau%C3%AD.svg/1920px-Bandeira_do_Piau%C3%AD.svg.png"
+            },
+            {
+                nome: "Rio de Janeiro",
+                sigla: "RJ",
+                capital: "Rio de Janeiro",
+                regiao: "Sudeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Bandeira_do_estado_do_Rio_de_Janeiro.svg/1920px-Bandeira_do_estado_do_Rio_de_Janeiro.svg.png"
+            },
+            {
+                nome: "Rio Grande do Norte",
+                sigla: "RN",
+                capital: "Natal",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Bandeira_do_Rio_Grande_do_Norte.svg/1920px-Bandeira_do_Rio_Grande_do_Norte.svg.png"
+            },
+            {
+                nome: "Rio Grande do Sul",
+                sigla: "RS",
+                capital: "Porto Alegre",
+                regiao: "Sul",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Bandeira_do_Rio_Grande_do_Sul.svg/1920px-Bandeira_do_Rio_Grande_do_Sul.svg.png"
+            },
+            {
+                nome: "Rondônia",
+                sigla: "RO",
+                capital: "Porto Velho",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Bandeira_de_Rond%C3%B4nia.svg/1920px-Bandeira_de_Rond%C3%B4nia.svg.png"
+            },
+            {
+                nome: "Roraima",
+                sigla: "RR",
+                capital: "Boa Vista",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Bandeira_de_Roraima.svg/1920px-Bandeira_de_Roraima.svg.png"
+            },
+            {
+                nome: "Santa Catarina",
+                sigla: "SC",
+                capital: "Florianópolis",
+                regiao: "Sul",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Bandeira_de_Santa_Catarina.svg/1280px-Bandeira_de_Santa_Catarina.svg.png"
+            },
+            {
+                nome: "São Paulo",
+                sigla: "SP",
+                capital: "São Paulo",
+                regiao: "Sudeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Bandeira_do_estado_de_S%C3%A3o_Paulo.svg/1920px-Bandeira_do_estado_de_S%C3%A3o_Paulo.svg.png"
+            },
+            {
+                nome: "Sergipe",
+                sigla: "SE",
+                capital: "Aracaju",
+                regiao: "Nordeste",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Bandeira_de_Sergipe.svg/1920px-Bandeira_de_Sergipe.svg.png"
+            },
+            {
+                nome: "Tocantins",
+                sigla: "TO",
+                capital: "Palmas",
+                regiao: "Norte",
+                imagem: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Bandeira_do_Tocantins.svg/1920px-Bandeira_do_Tocantins.svg.png"
+            }
+        ];
+
+        const botoes = document.getElementById("botoes");
+        const estadosDiv = document.getElementById("estados");
+
+        estados.forEach((estado, index) => {
+
+            const id = "estado" + index;
+
+            let classeCor;
+
+            if (index <= 4 || index >= 22) {
+                classeCor = "verde";
+            } else if (index <= 8 || index >= 18) {
+                classeCor = "amarelo";
+            } else {
+                classeCor = "azul";
+            }
+
+            botoes.innerHTML += `
+                <button
+                    type="button"
+                    class="btn botao-estado ${classeCor}"
+                    data-toggle="collapse"
+                    data-target="#${id}"
+                    aria-expanded="false"
+                    aria-controls="${id}">
+                    ${estado.nome}
+                </button>
+            `;
+
+            estadosDiv.innerHTML += `
+                <div class="collapse caixa-estado" id="${id}">
+
+                    <div class="card-estado">
+
+                        <div class="cabecalho-estado">
+                            <h3>${estado.nome}</h3>
+                        </div>
+
+                        <div class="conteudo-estado">
+
+                            <div class="informacao">
+                                <strong>Sigla:</strong> ${estado.sigla}
+                            </div>
+
+                            <div class="informacao">
+                                <strong>Capital:</strong> ${estado.capital}
+                            </div>
+
+                            <div class="informacao">
+                                <strong>Região:</strong> ${estado.regiao}
+                            </div>
+
+                            <div class="foto-container">
+                                <img
+                                    class="foto-estado"
+                                    src="${estado.imagem}"
+                                    alt="Bandeira do estado de ${estado.nome}">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

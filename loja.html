@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sneaker Lab</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            SNEAKER<span>LAB</span>
+        </div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#produtos">Tênis</a>
+            <a href="#tecnologias">Tecnologias</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="hero-text">
+
+                <p class="small-title">NOVA COLEÇÃO</p>
+
+                <h1>
+                    Tecnologia para
+                    <span>cada passo.</span>
+                </h1>
+
+                <p>
+                    Conheça nossa coleção de tênis e descubra
+                    a tecnologia por trás de cada modelo.
+                </p>
+
+                <a href="#produtos" class="hero-button">
+                    Ver coleção
+                </a>
+
+            </div>
+
+            <div class="hero-shape">
+                <div class="hero-circle"></div>
+                <div class="hero-shoe">👟</div>
+            </div>
+
+        </section>
+
+
+        <section class="products" id="produtos">
+
+            <div class="section-title">
+                <p>COLEÇÃO 2026</p>
+                <h2>Escolha seu próximo passo</h2>
+            </div>
+
+
+            <div class="cards">
+
+                <article class="card">
+
+                    <div class="product-image blue">
+                        <div class="shoe-icon">👟</div>
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="category">
+                            CORRIDA
+                        </span>
+
+                        <h3>Runner X</h3>
+
+                        <p>
+                            Tênis leve desenvolvido para
+                            treinos e corridas.
+                        </p>
+
+                        <div class="technology">
+                            <strong>EVA Flex</strong>
+                            <span>Amortecimento</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <strong class="price">
+                                R$ 399,90
+                            </strong>
+
+                            <button
+                                onclick="abrirProduto('runner-x')">
+                                Ver em 3D
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="product-image red">
+                        <div class="shoe-icon">👟</div>
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="category">
+                            URBANO
+                        </span>
+
+                        <h3>Street Pro</h3>
+
+                        <p>
+                            Conforto para o dia a dia
+                            com visual esportivo.
+                        </p>
+
+                        <div class="technology">
+                            <strong>Air Cushion</strong>
+                            <span>Absorção de impacto</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <strong class="price">
+                                R$ 459,90
+                            </strong>
+
+                            <button
+                                onclick="abrirProduto('street-pro')">
+                                Ver em 3D
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="product-image green">
+                        <div class="shoe-icon">👟</div>
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="category">
+                            PERFORMANCE
+                        </span>
+
+                        <h3>Speed Max</h3>
+
+                        <p>
+                            Estrutura pensada para
+                            quem busca velocidade.
+                        </p>
+
+                        <div class="technology">
+                            <strong>Carbon Plate</strong>
+                            <span>Maior resposta</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <strong class="price">
+                                R$ 599,90
+                            </strong>
+
+                            <button
+                                onclick="abrirProduto('speed-max')">
+                                Ver em 3D
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="product-image orange">
+                        <div class="shoe-icon">👟</div>
+                    </div>
+
+                    <div class="card-content">
+
+                        <span class="category">
+                            CASUAL
+                        </span>
+
+                        <h3>Urban Flex</h3>
+
+                        <p>
+                            Modelo versátil para combinar
+                            conforto e estilo.
+                        </p>
+
+                        <div class="technology">
+                            <strong>Flex Sole</strong>
+                            <span>Maior flexibilidade</span>
+                        </div>
+
+                        <div class="card-bottom">
+
+                            <strong class="price">
+                                R$ 349,90
+                            </strong>
+
+                            <button
+                                onclick="abrirProduto('urban-flex')">
+                                Ver em 3D
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="technologies" id="tecnologias">
+
+            <div class="section-title">
+                <p>TECNOLOGIA</p>
+                <h2>O que existe por trás dos modelos?</h2>
+            </div>
+
+            <div class="tech-grid">
+
+                <div class="tech-card">
+                    <div>01</div>
+                    <h3>EVA Flex</h3>
+                    <p>
+                        Espuma leve utilizada para
+                        proporcionar amortecimento
+                        durante a passada.
+                    </p>
+                </div>
+
+                <div class="tech-card">
+                    <div>02</div>
+                    <h3>Air Cushion</h3>
+                    <p>
+                        Sistema desenvolvido para
+                        ajudar na absorção dos impactos
+                        durante o movimento.
+                    </p>
+                </div>
+
+                <div class="tech-card">
+                    <div>03</div>
+                    <h3>Carbon Plate</h3>
+                    <p>
+                        Placa rígida posicionada na
+                        entressola para aumentar
+                        a resposta do calçado.
+                    </p>
+                </div>
+
+                <div class="tech-card">
+                    <div>04</div>
+                    <h3>Flex Sole</h3>
+                    <p>
+                        Solado com áreas flexíveis
+                        para acompanhar o movimento
+                        natural dos pés.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div class="modal" id="modal">
+
+        <div class="modal-content">
+
+            <button
+                class="close"
+                onclick="fecharProduto()">
+                ×
+            </button>
+
+            <div class="modal-header">
+
+                <div>
+                    <span id="modal-category">
+                        MODELO
+                    </span>
+
+                    <h2 id="modal-title">
+                        Tênis
+                    </h2>
+
+                    <p id="modal-description">
+                        Descrição
+                    </p>
+                </div>
+
+            </div>
+
+            <canvas id="canvas3d"></canvas>
+
+            <div class="controls">
+                Arraste com o mouse para girar o modelo
+                • Use a roda do mouse para aproximar
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <strong>SNEAKERLAB</strong>
+
+        <p>
+            Projeto desenvolvido para estudo de
+            desenvolvimento web e tecnologia 3D.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
