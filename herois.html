@@ -1,11 +1,217 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heróis</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="herois.css" />
+  </head>
+  <body>
+    <!-- para mais tarde
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Inicio</a>
+      </div>
+    -->
+    </nav>
+    <div class="container-fluid">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso1"
+                onclick="mudarFundo('//upload.wikimedia.org/wikipedia/pt/a/a6/Wolverine_%28X_Lives_of_Wolverine_n%C2%BA5%3B_2022%29.jpg')"
+              >
+                <h1>Wolverine</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso1">
+              <div class="card card-body">
+                <h1>Wolverine — Marvel</h1>
+
+                <p>
+                  Mutante com fator de cura extremamente rápido, sentidos
+                  aguçados e um esqueleto revestido de adamantium. Suas
+                  principais armas são as garras retráteis e sua grande
+                  resistência física.
+                </p>
+
+                <img class="img-fluid rounded shadow"
+                  src="https://upload.wikimedia.org/wikipedia/pt/a/a6/Wolverine_%28X_Lives_of_Wolverine_n%C2%BA5%3B_2022%29.jpg"
+                  alt="Wolverine"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso2"
+              >
+                <h1>Ghost Rider</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso2">
+              <div class="card card-body ">
+                <h1>Ghost Rider — Marvel</h1>
+
+                <p>
+                  Um espírito de vingança capaz de assumir uma forma
+                  sobrenatural coberta por chamas. Possui força sobre-humana,
+                  correntes místicas e o poderoso Olhar da Penitência.
+                </p>
+
+                <img class="img-fluid rounded shadow"
+                  src="https://upload.wikimedia.org/wikipedia/pt/e/e6/Challenge_of_the_Ghost_Riders.jpg"
+                  alt="Ghost Rider"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso3"
+                onclick="mudarFundo('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrMy3KpdzMfRPer24BLGLYjtMlmrD2DPK6DHBDUAPlbg&s=10')"
+              >
+                <h1>Batman</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso3">
+              <div class="card card-body">
+                <h1>Batman - DC</h1>
+
+                <p>
+                  Herói de Gotham conhecido por sua inteligência, preparo físico
+                  e habilidades de combate. Sem superpoderes, utiliza
+                  tecnologia, equipamentos avançados e estratégias para
+                  enfrentar criminosos e proteger a cidade.
+                </p>
+                <img class="img-fluid rounded shadow"
+                  src="https://upload.wikimedia.org/wikipedia/pt/8/8b/Batman_Vol_2_38.jpg?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso4"
+              >
+                <h1>Raphael</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso4">
+              <div class="card card-body">
+                <h1>Raphael — Tartarugas Ninja</h1>
+
+                <p>
+                  Uma das quatro Tartarugas Ninja, conhecida por sua
+                  personalidade impulsiva, corajosa e agressiva. Luta
+                  principalmente com dois sai e possui grande agilidade, força e
+                  habilidade em combate.
+                </p>
+                <img class="img-fluid rounded shadow"
+                  src="https://upload.wikimedia.org/wikipedia/pt/5/50/Raphael_%28Teenage_Mutant_Ninja_Turtles%29_2003.jpg?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+                  alt="Raphael"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso5"
+              >
+                <h1>Kratos</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso5">
+              <div class="card card-body">
+                <h1>Kratos — God of War</h1>
+
+                <p>
+                  Guerreiro espartano marcado por uma trajetória de guerras e
+                  vingança contra os deuses. Possui força excepcional, grande
+                  resistência e domina armas como as Lâminas do Caos e o Machado
+                  Leviatã.
+                </p>
+                <img class="img-fluid rounded shadow"
+                  src="https://upload.wikimedia.org/wikipedia/pt/1/12/Kratos_God_of_War_III.png?utm_source=pt.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+                  alt="Kratos"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <p>
+              <button
+                type="button"
+                class="btn btn-primary botao"
+                data-bs-toggle="collapse"
+                data-bs-target="#ItemCollapso6"
+              >
+                <h1>Omni-Man</h1>
+              </button>
+            </p>
+
+            <div class="collapse" id="ItemCollapso6">
+              <div class="card card-body">
+                <h1>Omni-Man — Invencível</h1>
+
+                <p>
+                  Guerreiro da raça Viltrumita com força, velocidade,
+                  resistência e capacidade de voar em níveis extraordinários. É
+                  um dos seres mais poderosos de seu universo e possui enorme
+                  experiência em combate.
+                </p>
+                <img class="img-fluid rounded shadow"
+                  src="https://static.wikia.nocookie.net/herois/images/7/70/Viltrumite_War.webp/revision/latest/scale-to-width/360?cb=20251015202542&path-prefix=pt-br"
+                  alt="Omni-Man"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+        function mudarFundo(imagem) {
+        document.body.style.backgroundImage = `url('${imagem}')`;
+    }
+</script>
 </body>
 </html>

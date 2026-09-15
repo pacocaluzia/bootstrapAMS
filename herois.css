@@ -1,0 +1,118 @@
+body {
+    background-color: #ca1010;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container-fluid {
+    min-height: 100vh;
+}
+
+.row {
+    min-height: 100vh;
+}
+
+.col-12 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-12 > div {
+    width: 750px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.botao {
+    width: 250px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: #000000 !important;
+    border: 1px solid #fffdfd !important;
+    color: #fffdfd !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: 0.2s ease;
+}
+
+.botao:hover {
+    background-color: #1a1a1a !important;
+    border-color: #fffdfd !important;
+    color: #ffffff !important;
+    transform: scale(1.04);
+}
+
+.botao:focus,
+.botao:focus-visible {
+    background-color: #000000 !important;
+    border-color: #fffdfd !important;
+    color: #fffdfd !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.botao:active {
+    background-color: #000000 !important;
+    border-color: #fffdfd !important;
+    color: #fffdfd !important;
+    box-shadow: none !important;
+    transform: scale(0.97);
+}
+@keyframes destaqueBotao {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1.02);
+    }
+}
+
+.botao:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    animation: destaqueBotao 0.25s ease forwards;
+}
+
+@keyframes aparecerCard {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card {
+    position: absolute;
+    left: 270px;
+    top: 0;
+    width: 450px;
+    max-width: 45vw;
+    background-color: #bfbfbf;
+    border: 2px solid #010101;
+    z-index: 10;
+    animation: aparecerCard 0.4s ease;
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
