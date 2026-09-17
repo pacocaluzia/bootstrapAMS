@@ -1,9 +1,20 @@
 body {
-    background-color: #ca1010;
+    background-color: #615a5a;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+.navbar{
+    background-color: #252424 !important;
+    
+}
+.container {
+    min-height: 5vh;
+    justify-content: flex-end;
+    align-items: center;
+    color: #ff0000;
+    text-shadow: 1px 1px 2px #fff;
 }
 .container-fluid {
     min-height: 100vh;
@@ -36,7 +47,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
-    background-color: #000000 !important;
+    background-color: #181717 !important;
     border: 1px solid #fffdfd !important;
     color: #fffdfd !important;
     box-shadow: none !important;
